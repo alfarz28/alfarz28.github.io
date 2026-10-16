@@ -53,6 +53,26 @@ const AboutPage = () => {
           </div>
         </div>
 
+        <h1>Study Journey</h1>
+        <div className={styles.container}>
+          <div className={styles.card}>
+            <h4>1.</h4>
+            <hr />
+            <h2>2023 - 2026</h2>
+            <p>
+              Diploma of Application Software Engineering at Telkom University, Bandung, Indonesia.
+            </p>
+          </div>
+          <div className={styles.card}>
+            <h4>2.</h4>
+            <hr />
+            <h2>2023 - present</h2>
+            <p>
+              Bachelor of Informatics at Telkom University, Bandung, Indonesia.
+            </p>
+          </div>
+        </div>
+
         <h1>I Can Help you with</h1>
         <div className={styles.container}>
           <div className={styles.card}>

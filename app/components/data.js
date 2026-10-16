@@ -2,8 +2,8 @@ import { RiTailwindCssFill } from "react-icons/ri";
 import { FaFigma, FaHtml5, FaCss3Alt, FaReact, FaSass } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io5";
 import { SiFlask, SiMongodb, SiPython, SiRedux } from "react-icons/si";
-// const baseUrl = "https://alfaridza.my.id";
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+const baseUrl = "";
+// const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
 export const ProjectsData = [
   {
