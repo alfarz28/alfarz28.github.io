@@ -6,7 +6,8 @@ import { motion, useTransform, useScroll } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import useDimension from "./useDimension";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+// const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+const baseUrl = "";
 
 const images = [
   `${baseUrl}/images/Fotoin-Cover.jpg`,
