@@ -1,33 +1,36 @@
-"use client";
 import styles from "./styles.module.scss";
 
 const ImagePreview = ({ data }) => {
+  const links = data.type
+    ? [{ label: "View", href: data.url }]
+    : [
+        { label: "Live View", href: data.url },
+        { label: "Github", href: data.github },
+      ];
+
+  const activeLinks = links.filter((l) => l.href);
+
   return (
-    <div className={styles.imagePreview}>
+    <section className={styles.preview}>
       <div className={styles.imgWrapper}>
-        <img src={`${data.img}`} id="img" />
-        <div className={styles.darken}>
-          {data.type ? (
-            <a href={data.url} target="_blank" rel="Download Design">
-              View
-            </a>
-          ) : (
-            <>
-              {data.url && (
-                <a href={data.url} target="_blank" rel="Live View">
-                  Live View
-                </a>
-              )}
-              {data.github && (
-                <a href={data.github} target="_blank" rel="Github">
-                  Github
-                </a>
-              )}
-            </>
-          )}
-        </div>
+        <img src={data.img} alt={data.title || "Preview project"} />
+
+        {activeLinks.length > 0 && (
+          <div className={styles.darken}>
+            {activeLinks.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
+    </section>
   );
 };
 

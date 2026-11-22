@@ -1,0 +1,92 @@
+$black: #3d3b3c;
+$blue: #0065a9;
+$jost: "Jost", sans-serif;
+$line: rgb(201, 201, 201);
+
+.step {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding-bottom: 28px;
+  font-family: $jost;
+  font-size: 16px;
+  line-height: 1.7;
+
+  /* Garis hanya muncul jika ada langkah setelahnya */
+  &:has(+ .step)::before {
+    content: "";
+    position: absolute;
+    top: 36px;
+    bottom: 0;
+    left: 15px;
+    width: 2px;
+    background-color: $line;
+  }
+
+  &:not(:has(+ .step)) {
+    padding-bottom: 0;
+  }
+}
+
+.marker {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid $black;
+  border-radius: 50%;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.body {
+  min-width: 0;
+  padding-top: 4px;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0 0 10px;
+  }
+
+  ul {
+    margin: 0 0 10px;
+    padding-left: 20px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.title {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Status (opsional) */
+.done .marker {
+  border-color: $blue;
+  background-color: $blue;
+  color: #fff;
+}
+
+.active .marker {
+  border-color: $blue;
+  color: $blue;
+}
+
+.todo {
+  opacity: 0.6;
+}

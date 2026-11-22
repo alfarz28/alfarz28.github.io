@@ -1,828 +1,359 @@
 $white: #f0f0f0;
 $black: #3d3b3c;
 $blue: #0065a9;
-$popins: "Poppins", sans-serif;
 $jost: "Jost", sans-serif;
-$page-padding: 0 100px;
+$line: rgb(201, 201, 201);
+$ease: cubic-bezier(0.76, 0, 0.24, 1);
+$pad: clamp(20px, 5vw, 80px);
 
-.imagePreview {
+/* ---------- Base ---------- */
+.page {
+  font-family: $jost;
+  color: $black;
+  padding-bottom: 80px;
+}
+
+.label {
   display: flex;
-  justify-content: center;
-  width: auto;
-  margin-bottom: 4rem;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 300;
+}
 
-  .imgWrapper {
-    overflow: hidden;
-    position: relative;
+.bullet {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: $black;
+}
+
+/* ---------- Header ---------- */
+.header {
+  padding: clamp(40px, 8vw, 100px) $pad 60px;
+}
+
+.title {
+  margin: 24px 0 48px;
+  font-weight: 400;
+  font-size: clamp(36px, 7vw, 110px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  word-break: break-word;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 32px;
+  margin: 0;
+  padding: 28px 0;
+  border-top: 1px solid $line;
+  border-bottom: 1px solid $line;
+
+  dt {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 6px 14px;
+    border: 1px solid $line;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+}
+
+.studycase {
+  max-width: 100%;
+  margin: 48px 0 0;
+  font-size: clamp(18px, 1.2vw, 28px);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.preview {
+  max-width: 1000px;
+  margin: 0 auto clamp(60px, 8vw, 120px);
+  padding: 0 $pad;
+}
+
+.imgWrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: rgba($black, 0.06);
+
+  img {
+    display: block;
     width: 100%;
-    height: max-content;
-    margin: 0 60px;
-    border-radius: 16px;
-    transition: filter 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    aspect-ratio: 16 / 9;
+    max-height: 60vh;
+    object-fit: cover;
+    object-position: top;
+    transition:
+      filter 0.4s $ease,
+      transform 0.8s $ease;
+  }
 
-    img {
-      width: 100%;
-      height: 100%;
-      transition: filter 0.3s ease;
-      object-fit: cover;
-      object-position: top;
+  .darken {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    a {
+      padding: 12px 26px;
+      border-radius: 999px;
+      background-color: $white;
+      color: $black;
+      font-family: $jost;
+      text-decoration: none;
+      transition:
+        transform 0.3s $ease,
+        background-color 0.3s;
+
+      &:hover {
+        transform: translateY(-3px);
+        background-color: #fff;
+      }
+    }
+  }
+
+  &:hover {
+    .darken {
+      opacity: 1;
     }
 
+    img {
+      filter: blur(4px);
+      transform: scale(1.02);
+    }
+  }
+}
+
+/* ---------- Features ---------- */
+.features {
+  margin: 0 $pad;
+  padding: clamp(24px, 5vw, 80px);
+  border-radius: 16px;
+  background-color: $white;
+}
+
+.featuresHead {
+  margin-bottom: 40px;
+}
+
+.featuresBody {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 1.4fr;
+  gap: clamp(30px, 5vw, 80px);
+  align-items: start;
+}
+
+/* Accordion */
+.item {
+  border-bottom: 1px solid $line;
+
+  &:first-child {
+    border-top: 1px solid $line;
+  }
+}
+
+.itemButton {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 24px 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-family: $jost;
+  text-align: start;
+  cursor: pointer;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.itemNumber {
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0.5;
+}
+
+.itemTitle {
+  flex: 1;
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 400;
+}
+
+.icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $black;
+    transition: transform 0.4s $ease;
+  }
+
+  &::after {
+    transform: rotate(90deg);
+  }
+}
+
+.open .icon::after {
+  transform: rotate(0deg);
+}
+
+/* Animasi tinggi tanpa JavaScript */
+.itemPanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s $ease;
+
+  p {
+    overflow: hidden;
+    margin: 0;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+}
+
+.open .itemPanel {
+  grid-template-rows: 1fr;
+
+  p {
+    padding-bottom: 24px;
+  }
+}
+
+/* Gambar features: crossfade, tanpa blink */
+.featureImg {
+  position: sticky;
+  top: 100px;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #fff;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media all and (max-width: 1024px) {
+  .meta {
+    grid-template-columns: 1fr 1fr;
+
+    > div:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .featuresBody {
+    grid-template-columns: 1fr;
+  }
+
+  .featureImg {
+    position: relative; /* wajib relative agar img absolute tetap tampil */
+    top: auto;
+    order: -1;
+    width: 100%;
+  }
+}
+
+/* Perangkat sentuh: tombol selalu terlihat, tanpa blur */
+@media (hover: none) {
+  .imgWrapper {
     .darken {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      transition: opacity 0.3s ease;
+      position: static;
+      opacity: 1;
+      padding: 16px;
+      background: none;
 
       a {
         background-color: $black;
         color: $white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-family: $jost;
       }
-    }
-
-    &:hover .darken {
-      opacity: 1;
     }
 
     &:hover img {
-      filter: blur(5px);
-    }
-  }
-}
-
-.featureDesc {
-  font-family: $jost;
-}
-
-@media all and (min-width: 1280px) {
-  .studyCase {
-    font-family: $jost;
-    padding: 60px;
-    height: calc(100vh - 100px);
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-
-    .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 200px;
-      width: 100%;
-
-      .paragraph {
-        flex-basis: 80%;
-        display: flex;
-        height: 100%;
-
-        p {
-          margin: 0;
-          width: 100%;
-          font-size: 24px;
-          font-weight: 400;
-        }
-      }
-
-      .title {
-        display: flex;
-        height: 100%;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        .containerTop {
-          display: flex;
-          flex-direction: column;
-
-          div:nth-child(1) {
-            display: flex;
-            align-items: center;
-          }
-        }
-
-        .paragraph {
-          flex-basis: 70%;
-        }
-
-        p {
-          svg {
-            margin-right: 10px;
-          }
-        }
-
-        .bullet {
-          background-color: $black;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          margin-right: 15px;
-        }
-
-        h1 {
-          margin: 0;
-          font-size: 32px;
-          font-weight: 300;
-          color: $black;
-        }
-      }
-    }
-  }
-
-  .features {
-    background-color: #f0f0f0;
-    height: fit-content;
-    margin: 60px;
-    padding: 80px;
-    border-radius: 8px;
-    display: flex;
-
-    .container {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    width: 300px;
-
-    hr {
-      width: 100%;
-      margin: 20px 0;
-    }
-
-    h1 {
-      margin: 0 15px 0 0;
-      text-align: start;
-    }
-
-    .dropdownButton {
-      padding: 0;
-      color: $black;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-
-      .arrowDown,
-      .arrowUp {
-        border: solid $black;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 5px;
-        transition: transform 0.3s ease;
-      }
-
-      .arrowDown {
-        transform: rotate(45deg);
-      }
-
-      .arrowUp {
-        transform: rotate(-135deg);
-      }
-    }
-
-    .dropdownMenu {
-      display: block;
-      position: absolute;
-      background-color: white;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      margin-top: 10px;
-      border-radius: 5px;
-      overflow: hidden;
-
-      .dropdownItem {
-        padding: 12px 16px;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #f1f1f1;
-        }
-      }
-    }
-  }
-
-  .featureImg {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 4rem;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-}
-
-@media all and (min-width: 1024px) and (max-width: 1280px) {
-  .studyCase {
-    font-family: $jost;
-    padding: 4em;
-    height: calc(100vh - 100px);
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-
-    .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 200px;
-      width: 100%;
-
-      .paragraph {
-        flex-basis: 80%;
-        display: flex;
-        height: 100%;
-
-        p {
-          margin: 0;
-          width: 100%;
-          font-size: 24px;
-          font-weight: 400;
-        }
-      }
-
-      .title {
-        display: flex;
-        height: 100%;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        .containerTop {
-          display: flex;
-          flex-direction: column;
-
-          div:nth-child(1) {
-            display: flex;
-            align-items: center;
-          }
-        }
-
-        .paragraph {
-          flex-basis: 70%;
-        }
-
-        p {
-          svg {
-            margin-right: 10px;
-          }
-        }
-
-        .bullet {
-          background-color: $black;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          margin-right: 15px;
-        }
-
-        h1 {
-          margin: 0;
-          font-size: 32px;
-          font-weight: 300;
-          color: $black;
-        }
-      }
-    }
-  }
-
-  .features {
-    background-color: #f0f0f0;
-    height: fit-content;
-    margin: 60px;
-    padding: 80px;
-    border-radius: 8px;
-    display: flex;
-
-    .container {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    width: 300px;
-
-    hr {
-      width: 100%;
-      margin: 20px 0;
-    }
-
-    h1 {
-      margin: 0 15px 0 0;
-      text-align: start;
-    }
-
-    .dropdownButton {
-      padding: 0;
-      color: $black;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-
-      .arrowDown,
-      .arrowUp {
-        border: solid $black;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 5px;
-        transition: transform 0.3s ease;
-      }
-
-      .arrowDown {
-        transform: rotate(45deg);
-      }
-
-      .arrowUp {
-        transform: rotate(-135deg);
-      }
-    }
-
-    .dropdownMenu {
-      display: block;
-      position: absolute;
-      background-color: white;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      margin-top: 10px;
-      border-radius: 5px;
-      overflow: hidden;
-
-      .dropdownItem {
-        padding: 12px 16px;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #f1f1f1;
-        }
-      }
-    }
-  }
-
-  .featureImg {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 4rem;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-}
-
-@media all and (min-width: 768px) and (max-width: 1024px) {
-  .studyCase {
-    font-family: $jost;
-    padding: 1rem;
-
-    .container {
-      .title {
-        display: flex;
-        height: 100%;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        .containerTop {
-          display: flex;
-          flex-direction: column;
-
-          div:nth-child(1) {
-            display: flex;
-            align-items: center;
-          }
-        }
-
-        .paragraph {
-          text-align: justify;
-        }
-
-        p {
-          svg {
-            margin-right: 10px;
-          }
-        }
-
-        .bullet {
-          background-color: $black;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          margin-right: 15px;
-        }
-
-        h1 {
-          margin: 0;
-          font-size: 32px;
-          font-weight: 300;
-          color: $black;
-        }
-      }
-    }
-  }
-
-  .features {
-    background-color: #f0f0f0;
-    height: fit-content;
-    margin: 3rem auto;
-    padding: 32px;
-    border-radius: 8px;
-    display: flex;
-    width: 70vw;
-    flex-direction: column;
-
-    .container {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .featureImg {
-      padding: 24px;
-      width: 80%;
-
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-  }
-
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-
-    hr {
-      width: 100%;
-      margin: 20px 0;
-    }
-
-    h1 {
-      margin: 0 15px 0 0;
-      text-align: start;
-    }
-
-    .dropdownButton {
-      padding: 0;
-      color: $black;
-      border: none;
-      cursor: pointer;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-
-      .arrowDown,
-      .arrowUp {
-        border: solid $black;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 5px;
-        transition: transform 0.3s ease;
-      }
-
-      .arrowDown {
-        transform: rotate(45deg);
-      }
-
-      .arrowUp {
-        transform: rotate(-135deg);
-      }
-    }
-
-    .dropdownMenu {
-      display: block;
-      position: absolute;
-      background-color: white;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      margin-top: 10px;
-      border-radius: 5px;
-      overflow: hidden;
-
-      .dropdownItem {
-        padding: 12px 16px;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #f1f1f1;
-        }
-      }
-    }
-  }
-}
-
-@media all and (min-width: 480px) and (max-width: 768px) {
-  .studyCase {
-    font-family: $jost;
-    padding: 1rem;
-
-    .container {
-      .title {
-        display: flex;
-        height: 100%;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        .containerTop {
-          display: flex;
-          flex-direction: column;
-
-          div:nth-child(1) {
-            display: flex;
-            align-items: center;
-          }
-        }
-
-        .paragraph {
-          text-align: justify;
-        }
-
-        p {
-          svg {
-            margin-right: 10px;
-          }
-        }
-
-        .bullet {
-          background-color: $black;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          margin-right: 15px;
-        }
-
-        h1 {
-          margin: 0;
-          font-size: 32px;
-          font-weight: 300;
-          color: $black;
-        }
-      }
-    }
-  }
-
-  .features {
-    background-color: #f0f0f0;
-    height: fit-content;
-    margin: 3rem auto;
-    padding: 32px;
-    border-radius: 8px;
-    display: flex;
-    width: 70vw;
-    flex-direction: column;
-
-    .container {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .featureImg {
-      padding: 24px;
-      width: 80%;
-
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-  }
-
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-
-    hr {
-      width: 100%;
-      margin: 20px 0;
-    }
-
-    h1 {
-      margin: 0 15px 0 0;
-      text-align: start;
-    }
-
-    .dropdownButton {
-      padding: 0;
-      color: $black;
-      border: none;
-      cursor: pointer;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-
-      .arrowDown,
-      .arrowUp {
-        border: solid $black;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 5px;
-        transition: transform 0.3s ease;
-      }
-
-      .arrowDown {
-        transform: rotate(45deg);
-      }
-
-      .arrowUp {
-        transform: rotate(-135deg);
-      }
-    }
-
-    .dropdownMenu {
-      display: block;
-      position: absolute;
-      background-color: white;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      margin-top: 10px;
-      border-radius: 5px;
-      overflow: hidden;
-
-      .dropdownItem {
-        padding: 12px 16px;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #f1f1f1;
-        }
-      }
+      filter: none;
+      transform: none;
     }
   }
 }
 
 @media all and (max-width: 480px) {
-  .studyCase {
-    font-family: $jost;
-    padding: 1rem;
-
-    .container {
-      .title {
-        display: flex;
-        height: 100%;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        .containerTop {
-          display: flex;
-          flex-direction: column;
-
-          div:nth-child(1) {
-            display: flex;
-            align-items: center;
-          }
-        }
-
-        .paragraph {
-          text-align: justify;
-        }
-
-        p {
-          svg {
-            margin-right: 10px;
-          }
-        }
-
-        .bullet {
-          background-color: $black;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          margin-right: 15px;
-        }
-
-        h1 {
-          margin: 0;
-          font-size: 32px;
-          font-weight: 300;
-          color: $black;
-        }
-      }
-    }
+  .meta {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  .features {
-    background-color: #f0f0f0;
-    height: fit-content;
-    margin: 3rem auto;
-    padding: 32px;
-    border-radius: 8px;
-    display: flex;
-    width: 70vw;
-    flex-direction: column;
-
-    .container {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .featureImg {
-      padding: 24px;
-      width: 80%;
-
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
+  .itemButton {
+    padding: 18px 0;
   }
 
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    // width: 300px;
+  .featureImg {
+    aspect-ratio: 4 / 3;
+  }
+}
 
-    hr {
-      width: 100%;
-      margin: 20px 0;
-    }
-
-    h1 {
-      margin: 0 15px 0 0;
-      text-align: start;
-    }
-
-    .dropdownButton {
-      padding: 0;
-      color: $black;
-      border: none;
-      cursor: pointer;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-
-      .arrowDown,
-      .arrowUp {
-        border: solid $black;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 5px;
-        transition: transform 0.3s ease;
-      }
-
-      .arrowDown {
-        transform: rotate(45deg);
-      }
-
-      .arrowUp {
-        transform: rotate(-135deg);
-      }
-    }
-
-    .dropdownMenu {
-      display: block;
-      position: absolute;
-      background-color: white;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      margin-top: 10px;
-      border-radius: 5px;
-      overflow: hidden;
-
-      .dropdownItem {
-        padding: 12px 16px;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #f1f1f1;
-        }
-      }
-    }
+@media (prefers-reduced-motion: reduce) {
+  .imgWrapper img,
+  .itemPanel,
+  .icon::before,
+  .icon::after {
+    transition: none;
   }
 }

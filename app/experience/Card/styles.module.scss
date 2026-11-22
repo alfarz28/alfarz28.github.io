@@ -1,0 +1,131 @@
+/* ---------- Card ---------- */
+.project {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 0;
+  border-top: 1px solid rgb(201, 201, 201);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  color: inherit;
+  text-decoration: none;
+
+  &:last-of-type {
+    border-bottom: 1px solid rgb(201, 201, 201);
+  }
+
+  &:hover {
+    opacity: 0.5;
+
+    h2 {
+      transform: translateX(-10px);
+    }
+    p {
+      transform: translateX(10px);
+    }
+  }
+
+  h2 {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 400;
+    transition: transform 0.4s;
+    width: 70%;
+  }
+
+  p {
+    transition: transform 0.4s;
+    font-weight: 300;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    gap: 16px;
+
+    .date {
+      min-width: 150px;
+    }
+
+    .org {
+      font-size: 14px;
+      min-width: 200px;
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .project .h2 {
+    font-size: 24px;
+    width: 100%;
+  }
+  .wrapper {
+    display: flex;
+    flex-direction: column !important;
+    align-items: start;
+    gap: 8px;
+
+    .date {
+      min-width: 150px;
+    }
+
+    .org {
+      font-size: 14px;
+      min-width: 100px;
+    }
+  }
+}
+
+.modalContainer {
+  height: 350px;
+  width: 400px;
+  position: fixed; // fixed + pageX/pageY: ganti ke clientX/clientY jika dipakai
+  position: absolute;
+  background-color: #161616;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.modalSlider {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: top 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.modal {
+  height: 100%;
+  width: 100%;
+  position: relative; // wajib untuk next/image dengan `fill`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cursor,
+.cursorLabel {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #455ce9;
+  color: white;
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 300;
+  pointer-events: none;
+}
+
+.cursorLabel {
+  background-color: transparent;
+}

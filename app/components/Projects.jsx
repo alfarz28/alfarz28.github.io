@@ -1,4 +1,3 @@
-import React from "react";
 import style from "../styles/variables.module.scss";
 import ProjectCard from "./ProjectCard";
 import Button from "./Button";
@@ -12,7 +11,7 @@ const Projects = () => {
         .sort((a, b) => b.id - a.id)
         .map((item) => (
           <ProjectCard
-            key={item.title}
+            key={item.id}
             title={item.title}
             desc={item.desc}
             cat={item.cat}

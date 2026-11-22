@@ -1,220 +1,291 @@
 $white: #f0f0f0;
 $black: #3d3b3c;
 $blue: #0065a9;
-$popins: "Poppins", sans-serif;
 $jost: "Jost", sans-serif;
+$line: rgb(201, 201, 201);
+$ease: cubic-bezier(0.76, 0, 0.24, 1);
 
 .page {
   z-index: 5;
   font-family: $jost;
   color: $black;
-  padding: 50px 300px;
+  padding: 50px clamp(20px, 15.6vw, 300px) 100px;
+}
 
-  .aboutMe {
-    display: flex;
-    justify-content: space-between;
-    padding: 100px 0;
+.title {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(30px, 5vw, 75px);
+}
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      width: 60%;
+/* ---------- Hero ---------- */
+.aboutMe {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 80px 0 100px;
+}
 
-      a {
-        align-self: self-start;
-      }
+.photo {
+  flex-shrink: 0;
 
-      p {
-        margin: 0;
-        font-size: 16px;
-        font-weight: 300;
-        color: $black;
-        text-align: start;
-      }
-    }
+  img {
+    display: block;
+    width: 300px;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 16px;
+    filter: grayscale(0.6);
+    transition:
+      filter 0.5s $ease,
+      transform 0.5s $ease;
 
-    img {
-      object-fit: cover;
+    &:hover {
+      filter: grayscale(0);
+      transform: translateY(-6px);
     }
   }
+}
 
-  h1:nth-of-type(1) {
-    font-size: 75px;
-    text-align: start;
+.bio {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  p {
+    margin: 0;
+    font-size: clamp(16px, 1.4vw, 20px);
+    font-weight: 300;
+    line-height: 1.8;
   }
 
-  h1 {
+  a {
+    align-self: flex-start;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border: 1px solid $black;
+  border-radius: 999px;
+  color: $black;
+  font-family: $jost;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  transition:
+    background-color 0.3s $ease,
+    color 0.3s $ease;
+
+  svg {
+    transition: transform 0.3s $ease;
+  }
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+
+    svg {
+      transform: translateY(3px);
+    }
+  }
+}
+
+/* ---------- Section ---------- */
+.section {
+  margin-bottom: 100px;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: 24px;
+  margin-bottom: 40px;
+  border-top: 1px solid $line;
+
+  h2 {
     margin: 0;
     font-weight: 400;
+    font-size: clamp(28px, 4vw, 56px);
+  }
+
+  span {
+    font-weight: 300;
+    font-size: 16px;
+    opacity: 0.5;
+  }
+}
+
+/* ---------- Cards ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.card {
+  padding: 30px;
+  border: 1px solid $line;
+  border-radius: 16px;
+  transition:
+    transform 0.4s $ease,
+    border-color 0.4s,
+    background-color 0.4s;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: $black;
+    background-color: rgba($black, 0.03);
+  }
+
+  .cardNumber {
+    display: block;
+    margin-bottom: 40px;
+    font-size: 14px;
+    font-weight: 300;
+    opacity: 0.5;
+  }
+
+  h3 {
+    margin: 0 0 12px;
+    font-weight: 500;
+    font-size: 28px;
+  }
+
+  p {
+    margin: 0;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ---------- Skills ---------- */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 10px;
+  border: 1px solid $line;
+  border-radius: 16px;
+  transition:
+    transform 0.3s $ease,
+    border-color 0.3s,
+    color 0.3s;
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  span {
+    font-size: 13px;
+    font-weight: 300;
     text-align: center;
   }
 
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    height: 400px;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: $blue;
+    color: $blue;
+  }
+}
 
-    .card {
-      height: calc(100% - 100px);
-      width: 100%;
+/* ---------- Responsive ---------- */
+@media all and (max-width: 1024px) {
+  .aboutMe {
+    flex-direction: column;
+    padding: 50px 0 70px;
+  }
 
-      h4,
-      h2 {
-        font-weight: 500;
-      }
+  .photo img {
+    width: 240px;
+  }
+
+  .bio {
+    width: 100%;
+  }
+
+  .section {
+    margin-bottom: 70px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card {
+    padding: 24px;
+
+    .cardNumber {
+      margin-bottom: 24px;
     }
   }
 
   .skills {
-    div {
-      margin: 50px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      svg {
-        width: 50px;
-        height: 50px;
-        margin-right: 10px;
-      }
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .skill {
+    padding: 18px 6px;
+
+    svg {
+      width: 32px;
+      height: 32px;
     }
   }
 }
 
-@media all and (min-width: 1024px) and (max-width: 1280px) {
-  .page {
-    padding: 40px 150px;
-
-    .aboutMe {
-      padding: 80px 0;
-
-      .container {
-        width: 65%;
-      }
-    }
-
-    h1:nth-of-type(1) {
-      font-size: 60px;
-    }
-
-    .container {
-      gap: 40px;
-      height: 350px;
-    }
+@media (hover: none) {
+  .photo img {
+    filter: none;
   }
 }
 
-@media all and (min-width: 768px) and (max-width: 1024px) {
-  .page {
-    padding: 30px 100px;
-
-    .aboutMe {
-      flex-direction: row;
-      padding: 60px 0;
-      gap: 30px;
-
-      .container {
-        width: 100%;
-        margin-bottom: 20px;
-      }
-    }
-
-    h1:nth-of-type(1) {
-      font-size: 50px;
-    }
-
-    .container {
-      flex-direction: column;
-      gap: 30px;
-      height: auto;
-
-      .card {
-        width: 100%;
-        height: auto;
-      }
-    }
-  }
-}
-
-@media all and (min-width: 480px) and (max-width: 768px) {
-  .page {
-    padding: 20px 50px;
-
-    .aboutMe {
-      flex-direction: column;
-      padding: 40px 0;
-
-      img {
-        width: 100%;
-      }
-
-      .container {
-        width: 100%;
-        margin: 20px 0;
-      }
-    }
-
-    h1:nth-of-type(1) {
-      font-size: 40px;
-    }
-
-    .container {
-      flex-direction: column;
-      gap: 20px;
-      height: auto;
-
-      .card {
-        width: 100%;
-        height: auto;
-      }
-    }
-  }
-}
-
-@media all and (max-width: 480px) {
-  .page {
-    padding: 10px 20px;
-
-    .aboutMe {
-      flex-direction: column;
-      padding: 50px 0;
-
-      img {
-        width: 100%;
-      }
-
-      .container {
-        gap: 10px;
-        width: 100%;
-        margin: 10px 0;
-      }
-
-      .container {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-    }
-
-    h1:nth-of-type(1) {
-      font-size: 30px;
-    }
-
-    h1 {
-      text-align: start;
-    }
-
-    .container {
-      flex-direction: column;
-      gap: 10px;
-      height: auto;
-
-      .card {
-        width: 100%;
-        height: auto;
-      }
-    }
+@media (prefers-reduced-motion: reduce) {
+  .photo img,
+  .card,
+  .skill {
+    transition: none;
   }
 }

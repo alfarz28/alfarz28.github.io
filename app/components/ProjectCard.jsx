@@ -53,7 +53,9 @@ const ProjectCard = ({ title, desc, cat, position, id, tech }) => {
               }}
               className={style.tech}
             >
-              {tech}
+              {tech?.map((icon, index) => (
+                <React.Fragment key={index}>{icon}</React.Fragment>
+              ))}
             </h2>
           </div>
         </div>

@@ -12,6 +12,14 @@ export const Links = [
     href: "/projects",
   },
   {
+    title: "Blogs",
+    href: "/blog",
+  },
+  {
+    title: "Experiences",
+    href: "/experience",
+  },
+  {
     title: "Contact",
     href: "mailto:alfaridzah@gmail.com",
   },
@@ -28,6 +36,6 @@ export const FooterLinks = [
   },
   {
     title: "GitHub",
-    href: "https://github.com/AlfaridzaHamdani",
+    href: "https://github.com/alfarz28",
   },
 ];

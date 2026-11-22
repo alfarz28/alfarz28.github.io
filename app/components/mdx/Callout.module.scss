@@ -1,0 +1,50 @@
+$jost: "Jost", sans-serif;
+
+.callout {
+  display: flex;
+  gap: 14px;
+  margin: 28px 0;
+  padding: 18px 20px;
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+  font-family: $jost;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.info {
+  --accent: #0065a9;
+}
+.tip {
+  --accent: #2e8b57;
+}
+.warning {
+  --accent: #d98e04;
+}
+.danger {
+  --accent: #c0392b;
+}
+
+.icon {
+  flex-shrink: 0;
+  line-height: 1.7;
+}
+
+.body {
+  min-width: 0;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0 0 10px;
+  }
+}
+
+.title {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
